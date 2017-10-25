@@ -1,7 +1,7 @@
 FROM ubuntu:14.04
 
 RUN apt-get update \
-	&& apt-get install -y apache2 git curl php5 php5-mcrypt php5-mysql php5-curl \
+	&& apt-get install -y apache2 git curl php5 php5-mcrypt php5-mysql php5-curl php5-sybase tdsodbc php5-odbc php5-gd \
 	&& apt-get autoremove \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* \
@@ -13,6 +13,7 @@ COPY ports.conf /etc/apache2/ports.conf
 COPY alias.conf /etc/apache2/mods-enabled/alias.conf
 
 ADD laravel.conf /etc/apache2/sites-available/
+COPY freetds.conf /etc/freetds/freetds.conf
 
 RUN /usr/sbin/a2ensite laravel.conf \
 	&& /usr/bin/curl -sS https://getcomposer.org/installer | /usr/bin/php \

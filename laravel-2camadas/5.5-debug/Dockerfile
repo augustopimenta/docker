@@ -1,7 +1,7 @@
 FROM ubuntu:14.04
 
 RUN apt-get update \
-	&& apt-get install -y apache2 git curl php5 php5-mcrypt php5-mysql php5-curl php5-xdebug \
+	&& apt-get install -y apache2 git curl php5 php5-mcrypt php5-mysql php5-curl php5-xdebug php5-gd \
 	&& apt-get autoremove \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* \
