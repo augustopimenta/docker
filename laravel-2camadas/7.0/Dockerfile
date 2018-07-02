@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 
 RUN apt-get update \
-	&& apt-get install -y apache2 git curl php php-mcrypt php-mysql php-curl php-sybase tdsodbc php-odbc php-gd \
+	&& apt-get install -y apache2 git curl php php-mcrypt php-mysql php-curl php-sybase tdsodbc php-odbc php-gd libapache2-mod-php \
 	&& apt-get autoremove \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* \
@@ -11,6 +11,7 @@ RUN apt-get update \
 
 COPY ports.conf /etc/apache2/ports.conf
 COPY alias.conf /etc/apache2/mods-enabled/alias.conf
+COPY dir.conf /etc/apache2/mods-enabled/dir.conf
 
 ADD laravel.conf /etc/apache2/sites-available/
 COPY freetds.conf /etc/freetds/freetds.conf
